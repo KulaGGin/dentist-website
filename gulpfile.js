@@ -38,7 +38,7 @@ const config = new (function () {
 		this.scss = ['src/scss/**/*.scss'];
 		this.less = ['src/less/**/*.less'];
 		this.js = ['src/js/**/*.js'];
-		this.dist = ['dist/'];
+		this.dist = ['docs/'];
 	})();
 	
 	this.output = new (function() {
@@ -61,7 +61,7 @@ gulp.task('watch:all', ['browserSync:serve', 'compile:all'], function() {
 	gulp.watch(config.paths.js, {cwd: './'}, ['compile:js']).on('error', handleError);
 	
 	// Reload browser only when files in dist folder are changed
-	// gulp.watch('./dist/**/*').on('change', browserSync.reload);
+	// gulp.watch('./docs/**/*').on('change', browserSync.reload);
 });
 
 gulp.task('compile:all', ['compile:html', 'compile:img', 'compile:sass', 'compile:js']);
@@ -70,7 +70,7 @@ gulp.task('compile:all', ['compile:html', 'compile:img', 'compile:sass', 'compil
 // Just move html to dist folder
 gulp.task('compile:html', function() {
 	gulp.src(config.paths.html)
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('docs'))
 		.pipe(browserSync.stream());
 });
 
@@ -81,7 +81,7 @@ gulp.task('compile:img', function() {
 		.pipe(imagemin([
 			imagemin.optipng({optimizationLevel: 5})
 		]))
-		.pipe(gulp.dest('dist/img'))
+		.pipe(gulp.dest('docs/img'))
 		.pipe(browserSync.stream());
 });
 
@@ -139,7 +139,7 @@ gulp.task('compile:css', function() {
 	return gulp.src(config.paths.css)
 			.pipe(plumber({errorHandler: handleError}))
 			.pipe(concat('bundle.min.css'))
-			.pipe(gulp.dest('./dist/css'))
+			.pipe(gulp.dest('./docs/css'))
 			.pipe(browserSync.stream());
 });
 
@@ -148,14 +148,14 @@ gulp.task('compile:js', function() {
 		.pipe(plumber({errorHandler: handleError}))
 		.pipe(jshint())
 		.pipe(jshint.reporter('jshint-stylish'))
-		.pipe(gulp.dest('dist/js'))
+		.pipe(gulp.dest('docs/js'))
 		.pipe(browserSync.stream());
 });
 
 gulp.task('browserSync:serve', ['compile:all'], function() {
 	browserSync.init({
 		server: {
-			baseDir: "dist"
+			baseDir: "docs"
 		},
 		port: 8080,
 		open: false,
