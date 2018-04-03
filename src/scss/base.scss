@@ -55,3 +55,9 @@ a {
 ul {
   list-style: none;
 }
+
+@media screen and (max-width: 822px) {
+  .layout {
+    width: 100%;
+  }
+}

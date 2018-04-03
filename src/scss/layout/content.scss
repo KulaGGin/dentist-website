@@ -14,13 +14,13 @@
   
   grid-row-gap: calculateRem(24px);
   
-  margin-bottom: 12px;
+  margin-bottom: calculateRem(12px);
   
   &__item {
     background-color: #FFF;
   
     // Setting text properties
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: calculateRem(12px);
     line-height: calculateRem(18px);
     color: #555555;
@@ -42,17 +42,18 @@
   &__image {
     &-container {
       grid-area: content__image;
-      
-      display: flex; // fix image position and size
+  
+      // fix image position, size and scaling on width change
+      display: flex;
+      align-items: flex-start;
     }
-    width: 100%;
+
   }
   
   &__main {
     grid-area: content__main;
   
-    padding-top: calculateRem(24px);
-    padding-left: calculateRem(30px);
+    padding: calculateRem(24px) calculateRem(16px) calculateRem(24px) calculateRem(30px);
   }
   
   &__aside {
@@ -64,12 +65,31 @@
     line-height: calculateRem(18px);
     color: #333333;
   
-    padding-top: calculateRem(24px);
-    padding-left: calculateRem(30px);
+    padding: calculateRem(24px) calculateRem(8px) calculateRem(24px) calculateRem(30px);
   
     & p {
       margin-bottom: 12px;
     }
+  }
+}
+
+@media all and (min-width:385px) and (max-width:640px) {
+  .content {
+    grid-area: layout__content;
+    
+    display: grid;
+    grid-template-areas:  "content__image"
+                          "content__main"
+                          "content__aside";
+    
+    grid-template-columns: 100%; // Setting column sizes in percentages
+    
+    grid-template-rows: min-content; // Shrink first grid row to content size
+    justify-content: space-between; // Gap between main and aside
+    
+    grid-row-gap: calculateRem(12px);
+    
+    margin-bottom: calculateRem(12px);
   }
   
 }

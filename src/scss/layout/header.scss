@@ -8,7 +8,7 @@
   align-items: start; // align items vertically to the start
   grid-template-rows: min-content min-content; // Shrink grid rows to content size
   
-  margin-bottom: 18px;
+  margin-bottom: calculateRem(18px);
   
   // Setting text properties
   font-family: Arial, sans-serif;
@@ -19,12 +19,12 @@
   &__logo-link {
     grid-area: header__logo;
     
-    margin-top: 26px;
-    margin-bottom: 6px;
+    margin-top: calculateRem(26px);
+    margin-bottom: calculateRem(6px);
   }
   
   &__logo-img {
-    width: 404px;
+    width: 100%;
   }
   
   &__nav {
@@ -42,17 +42,21 @@
       &__item {
         border-right: 1px solid $header__border-color;
         flex-grow: 1;
+        flex-basis: 0;
         text-align: center;
         
         &:last-child {
           border-right: 0px;
         }
+  
+        margin: 0 auto;
       }
       
       &__link {
         
         &:hover {
           cursor: pointer;
+          font-weight: bold;
           color: black;
         }
       }
@@ -63,6 +67,64 @@
           border: 0px;
           border-top: 3px solid #9dc5f0;
           padding: 0;
+      }
+    }
+  }
+}
+
+@media all and (min-width:385px) and (max-width:640px) {
+  .header {
+    
+    &__nav {
+      
+      &-menu {
+        &__item {
+          // Setting borders for items
+          border-right: 1px solid $header__border-color;
+          border-bottom: 1px solid $header__border-color;
+  
+          flex-basis: 1/3*100%; // 3 items per row
+          
+          &:nth-child(3n) {
+            // Remove right border for last item in each row
+            border-right: 0;
+          }
+          
+          // Remove bottom border for items in last row
+          &:nth-last-child(-n+3) {
+            border-bottom: 0;
+          }
+        }
+        
+      }
+    }
+  }
+}
+
+@media all and (max-width:384px) {
+  .header {
+    
+    &__nav {
+      
+      &-menu {
+        &__item {
+          // Setting borders for items
+          border-right: 1px solid $header__border-color;
+          border-bottom: 1px solid $header__border-color;
+          
+          flex-basis: 1/2*100%; // 3 items per row
+          
+          &:nth-child(even) {
+            // Remove right border for last item in each row
+            border-right: 0;
+          }
+          
+          // Remove bottom border for items in last row
+          &:nth-last-child(-n+2) {
+            border-bottom: 0;
+          }
+        }
+        
       }
     }
   }
