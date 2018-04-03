@@ -1,0 +1,75 @@
+@import "../main";
+
+.content {
+  grid-area: layout__content;
+  
+  display: grid;
+  grid-template-areas:  "content__image content__image"
+                        "content__main content__aside";
+  
+  grid-template-columns: (478px / $layout__content-width * 100%) (268px / $layout__content-width * 100%); // Setting column sizes in percentages
+  
+  grid-template-rows: min-content; // Shrink first grid row to content size
+  justify-content: space-between; // Gap between main and aside
+  
+  grid-row-gap: calculateRem(24px);
+  
+  margin-bottom: 12px;
+  
+  &__item {
+    background-color: #FFF;
+  
+    // Setting text properties
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calculateRem(12px);
+    line-height: calculateRem(18px);
+    color: #555555;
+    
+    & h2 {
+      font-weight: normal;
+      
+      font-size: calculateRem(24px);
+      line-height: calculateRem(36px);
+      margin-bottom: 6px;
+    }
+    
+    & p {
+      margin-bottom: 24px;
+    }
+  }
+  
+  
+  &__image {
+    &-container {
+      grid-area: content__image;
+      
+      display: flex; // fix image position and size
+    }
+    width: 100%;
+  }
+  
+  &__main {
+    grid-area: content__main;
+  
+    padding-top: calculateRem(24px);
+    padding-left: calculateRem(30px);
+  }
+  
+  &__aside {
+    grid-area: content__aside;
+  
+    // Setting text properties
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    font-size: calculateRem(14px);
+    line-height: calculateRem(18px);
+    color: #333333;
+  
+    padding-top: calculateRem(24px);
+    padding-left: calculateRem(30px);
+  
+    & p {
+      margin-bottom: 12px;
+    }
+  }
+  
+}

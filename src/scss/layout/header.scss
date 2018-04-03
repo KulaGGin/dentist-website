@@ -1,0 +1,69 @@
+@import "../main";
+
+.header {
+  display: grid;
+  grid-template-areas:  "header__logo"
+                        "header__nav-container";
+  justify-items: center; // Center items horizontally
+  align-items: start; // align items vertically to the start
+  grid-template-rows: min-content min-content; // Shrink grid rows to content size
+  
+  margin-bottom: 18px;
+  
+  // Setting text properties
+  font-family: Arial, sans-serif;
+  font-size: calculateRem(14px);
+  line-height: calculateRem(33px);
+  color: #5f5d67;
+  
+  &__logo-link {
+    grid-area: header__logo;
+    
+    margin-top: 26px;
+    margin-bottom: 6px;
+  }
+  
+  &__logo-img {
+    width: 404px;
+  }
+  
+  &__nav {
+    &-container {
+      grid-area: header__nav-container;
+    
+      width: 100%;
+      border: solid 1px $header__border-color;
+    }
+    
+    &-menu {
+      display: flex;
+      flex-flow: row wrap; // Wrap items if width is bigger than layout's width
+      
+      &__item {
+        border-right: 1px solid $header__border-color;
+        flex-grow: 1;
+        text-align: center;
+        
+        &:last-child {
+          border-right: 0px;
+        }
+      }
+      
+      &__link {
+        
+        &:hover {
+          cursor: pointer;
+          color: black;
+        }
+      }
+      
+      &__hr-line {
+          display: block;
+          height: 0px;
+          border: 0px;
+          border-top: 3px solid #9dc5f0;
+          padding: 0;
+      }
+    }
+  }
+}

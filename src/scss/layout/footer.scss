@@ -1,0 +1,11 @@
+@import "../main";
+
+.footer {
+  grid-area: layout__footer;
+  
+  color: #b9b8bb;
+  font-size: calculateRem(12px);
+  line-height: calculateRem(18px);
+  
+  margin-bottom: 42px;
+}
