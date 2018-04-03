@@ -21,15 +21,13 @@ body {
   font-size: calculateRem(16px);
   line-height: calculateRem(22px);
   
-  background-color: steelblue;
+  background: $default-bg-color url(../img/body-bg.jpg) top repeat-x;
 }
 
 .layout {
   width: $layout__min-viewport-width;
   min-height: 100vh;
   padding: 0 $layout__hor-paddings;
-  
-  background: $default-bg-color url(../img/body-bg.jpg) top repeat-x;
   
   display: grid;
   
