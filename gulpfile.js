@@ -48,8 +48,7 @@ const config = new (function () {
 })();
 
 // Default task is run by default when you open this project
-gulp.task('default', ['compile:all', 'watch:all', 'browserSync:serve'], function() {
-});
+gulp.task('default', ['compile:all', 'watch:all', 'browserSync:serve']);
 
 // Watch src folder, when appropriate files are changed in src folder - call appropriate task:
 // Compile and move needed files to dist folder
